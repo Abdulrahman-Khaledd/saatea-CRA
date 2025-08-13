@@ -1,0 +1,120 @@
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.logo {
+  max-width: 80px;
+  margin-bottom: 20px;
+}
+
+.register-form h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.register-form form {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.input-group {
+  margin-bottom: 20px;
+  direction: rtl;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #FFB511;
+  box-shadow: 0 0 0 2px rgba(255, 181, 17, 0.2);
+}
+
+.governorate-select {
+  background-color: white;
+  cursor: pointer;
+}
+
+.governorate-select option {
+  padding: 8px;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+  text-align: right;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: #3D99F5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #1483f3;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.auth-link a {
+  color: #FFB511;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .register-image {
+    display: none;
+  }
+  
+  .register-form {
+    padding: 20px;
+  }
+  
+  .register-form form {
+    padding: 20px;
+  }
+}
