@@ -7,9 +7,8 @@
   padding: 40px;
 }
 
-.logo {
-  max-width: 80px;
-  margin-bottom: 20px;
+.logo-icon {
+  max-width: 75px;
 }
 
 .register-form h1 {
@@ -51,12 +50,11 @@
 }
 
 .governorate-select {
-  background-color: white;
   cursor: pointer;
 }
 
 .governorate-select option {
-  padding: 8px;
+  background-color: #f2f2f2;
 }
 
 .error {
@@ -102,19 +100,7 @@ button[type="submit"]:hover {
 }
 
 @media (max-width: 768px) {
-  .register-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .register-image {
-    display: none;
-  }
-  
-  .register-form {
-    padding: 20px;
-  }
-  
-  .register-form form {
+  .register-formو .register-form form {
     padding: 20px;
   }
 }

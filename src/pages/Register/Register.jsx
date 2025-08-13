@@ -109,11 +109,11 @@ export default function Register() {
     <div className="register-container">
     {/* logo */}
 
-        {/* <div className="register-image"></div> */}
+    {/* <div className="register-image"></div> */}
     
       {/* form */}
       <div className="register-form">
-        <img src={logoIcon} alt="شعار ساطع" className="logo" />
+        <img src={logoIcon} alt="شعار ساطع" className="logo-icon" />
         <h1>أنشئ حسابك الآن</h1>
 
         <form onSubmit={handleSubmit}>
@@ -195,7 +195,7 @@ export default function Register() {
               type="password"
               placeholder="تأكيد كلمة المرور"
               value={form.confirmPassword}
-              autoComplete='confirm-new-password'
+              autoComplete='confirm-password'
               onChange={(e) => setForm({...form, confirmPassword: e.target.value})}
             />
             {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}

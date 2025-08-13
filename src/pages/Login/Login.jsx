@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import logo from '../../assets/Logo-Icon.png';
-// import logoAnimated from '../../assets/solar-panel.gif';
 
 export default function Login() {
   document.title = 'تسجيل دخول';
@@ -17,13 +16,13 @@ export default function Login() {
     e.preventDefault();
     const newErrors = {};
 
-    if (!form.email) newErrors.email = 'مطلوب';
-    if (!form.password) newErrors.password = 'مطلوب';
+    if (!form.email) newErrors.email = 'البريد الالكتروني غير صحيح';
+    if (!form.password) newErrors.password = ' رقم المرور غير صحيح';
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log('تم تسجيل الدخول:', form);
+      // console.log('تم تسجيل الدخول:', form);
 
     }
   };
