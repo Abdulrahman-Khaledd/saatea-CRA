@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   padding: 40px;
+  text-align: center;
 }
 
 .logo-icon {
@@ -27,13 +28,13 @@
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
-.input-group {
+.register-container .input-group {
   margin-bottom: 20px;
   direction: rtl;
 }
 
-.input-group input,
-.input-group select {
+.register-container .input-group input,
+.register-container .input-group select {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
@@ -42,22 +43,22 @@
   font-family: inherit;
 }
 
-.input-group input:focus,
-.input-group select:focus {
+.register-container .input-group input:focus,
+.register-container .input-group select:focus {
   outline: none;
   border-color: #FFB511;
   box-shadow: 0 0 0 2px rgba(255, 181, 17, 0.2);
 }
 
-.governorate-select {
+.register-container .governorate-select {
   cursor: pointer;
 }
 
-.governorate-select option {
+.register-container .governorate-select option {
   background-color: #f2f2f2;
 }
 
-.error {
+.register-container .error {
   color: #dc3545;
   font-size: 12px;
   margin-top: 5px;
@@ -65,10 +66,10 @@
   text-align: right;
 }
 
-button[type="submit"] {
+.register-container button[type="submit"] {
   width: 100%;
   padding: 12px;
-  background: #3D99F5;
+  background: #00b3e6;
   color: white;
   border: none;
   border-radius: 6px;
@@ -78,29 +79,29 @@ button[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background: #1483f3;
+.register-container button[type="submit"]:hover {
+  background: #00b4e6d0;
 }
 
-.auth-link {
+.register-container  .auth-link {
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
   color: #666;
 }
 
-.auth-link a {
+.register-container .auth-link a {
   color: #FFB511;
   text-decoration: none;
   font-weight: bold;
 }
 
-.auth-link a:hover {
+.register-container .auth-link a:hover {
   text-decoration: underline;
 }
 
 @media (max-width: 768px) {
-  .register-formو .register-form form {
+  .register-container .register-form , .register-container .register-form form {
     padding: 20px;
   }
 }

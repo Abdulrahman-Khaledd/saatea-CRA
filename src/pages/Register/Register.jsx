@@ -1,56 +1,52 @@
 import { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
 import './Register.css'
-import logoIcon from '../../assets/Logo-Icon.png';
-
+// import logo from '../../assets/Logo-Icon.png';
+import { Logo } from '../../components/Logo';
 export default function Register() {
   document.title = 'أنشئ حسابك الخاص';
   const navigate = useNavigate();
   
   // Egyptian governorates list
   const governorates = [
-    'القاهرة',
-    'الجيزة',
-    'الإسكندرية',
-    'الدقهلية',
-    'الشرقية',
-    'المنوفية',
-    'الغربية',
-    'كفر الشيخ',
-    'دمياط',
-    'البحيرة',
-    'الإسماعيلية',
-    'بورسعيد',
-    'السويس',
-    'شمال سيناء',
-    'جنوب سيناء',
-    'بني سويف',
-    'الفيوم',
-    'المنيا',
-    'أسيوط',
-    'سوهاج',
-    'قنا',
-    'الأقصر',
-    'أسوان',
-    'الوادي الجديد',
-    'مطروح',
-    'البحر الأحمر',
-    'الوادي الجديد'
-  ];
+  { govName: 'القاهرة', govId: 1 },
+  { govName: 'الجيزة', govId: 2 },
+  { govName: 'الإسكندرية', govId: 3 },
+  { govName: 'الدقهلية', govId: 4 },
+  { govName: 'الشرقية', govId: 5 },
+  { govName: 'المنوفية', govId: 6 },
+  { govName: 'الغربية', govId: 7 },
+  { govName: 'كفر الشيخ', govId: 8 },
+  { govName: 'دمياط', govId: 9 },
+  { govName: 'البحيرة', govId: 10 },
+  { govName: 'الإسماعيلية', govId: 11 },
+  { govName: 'بورسعيد', govId: 12 },
+  { govName: 'السويس', govId: 13 },
+  { govName: 'شمال سيناء', govId: 14 },
+  { govName: 'جنوب سيناء', govId: 15 },
+  { govName: 'بني سويف', govId: 16 },
+  { govName: 'الفيوم', govId: 17 },
+  { govName: 'المنيا', govId: 18 },
+  { govName: 'أسيوط', govId: 19 },
+  { govName: 'سوهاج', govId: 20 },
+  { govName: 'قنا', govId: 21 },
+  { govName: 'الأقصر', govId: 22 },
+  { govName: 'أسوان', govId: 23 },
+  { govName: 'الوادي الجديد', govId: 24 },
+  { govName: 'مطروح', govId: 25 },
+  { govName: 'البحر الأحمر', govId: 26 },
+];
+
 
   const [form, setForm] = useState({
     fullName: '',
-    email: '',
     phone: '',
-    region: '',
+    goverment: 0,
     password: '',
     confirmPassword: ''
   });
 
   const [errors, setErrors] = useState({});
-
-  // Email validation regex
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,13 +58,7 @@ export default function Register() {
     } else if (form.fullName.trim().length < 3) {
       newErrors.fullName = 'الاسم الكامل يجب أن يكون 3 أحرف على الأقل';
     }
-    
-    // Email validation
-    if (!form.email.trim()) {
-      newErrors.email = 'البريد الإلكتروني مطلوب';
-    } else if (!emailRegex.test(form.email)) {
-      newErrors.email = 'البريد الإلكتروني غير صحيح';
-    }
+
     
     // Phone validation
     if (!form.phone.trim()) {
@@ -77,9 +67,9 @@ export default function Register() {
       newErrors.phone = 'رقم الهاتف غير صحيح';
     }
     
-    // Region validation
-    if (!form.region) {
-      newErrors.region = 'المحافظة مطلوبة';
+    // goverment validation
+    if (!form.goverment) {
+      newErrors.goverment = 'المحافظة مطلوبة';
     }
     
     // Password validation
@@ -101,29 +91,30 @@ export default function Register() {
     // If no errors, proceed with form submission
     if (Object.keys(newErrors).length === 0) {
       // console.log('Form submitted successfully:', form);
+      console.log(form)
       navigate('/login');
     }
   };
   
   return (
     <div className="register-container">
-    {/* logo */}
 
-    {/* <div className="register-image"></div> */}
-    
-      {/* form */}
       <div className="register-form">
-        <img src={logoIcon} alt="شعار ساطع" className="logo-icon" />
-        <h1>أنشئ حسابك الآن</h1>
 
         <form onSubmit={handleSubmit}>
+          <Logo size="2" style={{backgroundColor:""}} />
+          <h1>
+            
+            إنشاء حساب
+            
+          </h1>
           <div className="input-group">
             <input
               name='fullName'
               id='fullName'
               autoComplete='new-fullName'
               type="text"
-              placeholder="الاسم الكامل"
+              placeholder="الاسم الكامل  "
               value={form.fullName}
               onChange={(e) => setForm({...form, fullName: e.target.value})}
             />
@@ -132,26 +123,13 @@ export default function Register() {
 
           <div className="input-group">
             <input
-              name='email'
-              id='email'
-              autoComplete='new-email'
-              type="email"
-              placeholder="البريد الإلكتروني"
-              value={form.email}
-              onChange={(e) => setForm({...form, email: e.target.value})}
-            />
-            {errors.email && <span className="error">{errors.email}</span>}
-          </div>
-
-          <div className="input-group">
-            <input
-              name='phoneNumber'
-              id='phoneNumber'
+              name='phonegovIdber'
+              id='phonegovIdber'
               dir='rtl'
               type="tel"
-              placeholder="رقم الهاتف"
+              placeholder="رقم الهاتف "
               value={form.phone}
-              autoComplete='new-phonenumber'
+              autoComplete='tel'
               onChange={(e) => setForm({...form, phone: e.target.value})}
             />
             {errors.phone && <span className="error">{errors.phone}</span>}
@@ -161,18 +139,18 @@ export default function Register() {
             <select
               name='governorate'
               id='governorate'
-              value={form.region}
-              onChange={(e) => setForm({...form, region: e.target.value})}
+              value={form.goverment}
+              onChange={(e) => setForm({...form, goverment: parseInt(e.target.value)})}
               className="governorate-select"
             >
-              <option value="" selected disabled>اختر المحافظة</option>
+              <option>اختر المحافظة </option>
               {governorates.map((governorate, index) => (
-                <option key={index} value={governorate}>
-                  {governorate}
+                <option key={governorate['govId']} value={governorate['govId']}>
+                  {governorate['govName']}
                 </option>
               ))}
             </select>
-            {errors.region && <span className="error">{errors.region}</span>}
+            {errors.goverment && <span className="error">{errors.goverment}</span>}
           </div>
 
           <div className="input-group">
@@ -205,7 +183,7 @@ export default function Register() {
         </form>
 
         <p className="auth-link">
-          لديك حساب بالفعل؟ <Link to="/login">سجل الآن</Link>
+          لديك حساب بالفعل؟ <Link to="/login">تسجيل دخول</Link>
         </p>
       </div>
     </div>
