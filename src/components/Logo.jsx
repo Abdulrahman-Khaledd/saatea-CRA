@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import SunLogo from "../assets/sun-logo.svg"
 
 document.fonts.add(new FontFace("LogoFont","url('./DG_Sahabah_Reg.woff2')format('woff2')"))
@@ -21,6 +22,7 @@ const logoStyle = {
 
 export const Logo = ({size=2 , style}) => {
   return (
+    <Link to="/">
     <div id="logo" style={{...logoStyle,...style}}>
 
     <img src={SunLogo} alt="شعار ساطع" width={30*size} height={12*size}/>
@@ -30,5 +32,6 @@ export const Logo = ({size=2 , style}) => {
     </span>
 
 </div>
+</Link>
   )
 }

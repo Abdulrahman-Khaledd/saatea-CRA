@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 // import logo from '../../assets/Logo-Icon.png';
 import { Logo } from '../../components/Logo';
+import Navbar from '../../components/Header/Navbar';
+import Footer from '../../components/Footer/Footer';
 export default function Login() {
   document.title = 'تسجيل دخول';
   const [form, setForm] = useState({
@@ -32,12 +34,14 @@ export default function Login() {
   };
 
   return (
-        <div className="login-container">
+   <>
+   <Navbar/>
+        <div className="login-container" style={{flex:1 ,justifuySelf:"center"}}>
     
           <div className="login-form">
     
             <form onSubmit={handleSubmit}>
-              <Logo size="2" style={{backgroundColor:""}} />
+              {/* <Logo size="2" style={{backgroundColor:""}} /> */}
 
               <h1>
                 
@@ -76,9 +80,11 @@ export default function Login() {
             </form>
     
             <p className="auth-link">
-              ليس لديك حساب؟ <Link to="/">إنشاء حساب جديد</Link>
+              ليس لديك حساب؟ <Link to="/signup">إنشاء حساب جديد</Link>
             </p>
           </div>
         </div>
+    <Footer/>
+  </>
   );
 }
