@@ -1,35 +1,35 @@
 
 import { useState } from "react";
-import Navbar from "../../components/Header/Navbar";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer/Footer";
+import { Header, Footer } from "../../components";
 import heroimg from "../../assets/hero-img.gif";
 import img_1 from "../../assets/New entries-cuate.svg";
-import img_2 from "../../assets/img-2.svg";
-import img_3 from "../../assets/img-3.svg";
+import img_2 from "../../assets/undraw_result_d6p8.svg";
+import img_3 from "../../assets/undraw_choice_dzxz.svg";
 import "./Home.css"
-// import "../home/home.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export default function Home() {
 const [showPopup, setShowPopup] = useState(false);
 
   return (
     <>
-    <Navbar/>
+
+    <Header/>
+
       <div className="home">
 
         {/* Hero Section */}
         <section className="hero">
           <div className="hero-content">
             <hgroup>
-              <h1>احصل على توصيات لألواح طاقة شمسية مخصصة لمنزلك</h1>
+              <h1>طاقة أنظف، حسابات أوضح</h1>
               <p>
-                اكتشف الآن ما هي أفضل الحلول المستدامة للطاقة الشمسية لمنزلك
-                بالتفصيل.
+                أدخِل أجهزتك، واحصل على تقرير شامل وعدد الألواح المطلوب.
               </p>
             </hgroup>
-            <Link to="/signup" >
+            <Link to="/register" >
+
               <button>
                 ابدأ الآن
               </button>
@@ -42,19 +42,27 @@ const [showPopup, setShowPopup] = useState(false);
 
         {/* How it works */}
         <section className="how-it-works">
-          <h2>كيف تعمل المنصة</h2>
-          <div className="steps">
+          <h2>
+              <span style={{backgroundColor:"#00b3e6",backgroundClip:"text"}} >ثلاث </span>خطوات لحساب احتياجك
+          </h2>
+          <div className="steps d-flex flex-column flex-lg-row justify-content-around align-items-center flex-wrap">
             <div>
               <img src={img_1} alt="صوره إدخال البيانات" />
-              <p>إدخال البيانات</p>
+              <p>
+                أدخل بيانات الإستهلاك
+              </p>
+            </div>  
+            <div>
+              <img src={img_2} alt="صوره رؤيه النتيجه" />
+              <p>
+                رؤية النتيجة
+              </p>
             </div>
             <div>
-              <img src={img_2} alt="صوره احتساب التوصيات" />
-              <p>احتساب التوصيات</p>
-            </div>
-            <div>
-              <img src={img_3} alt="صوره الحصول على توصية" />
-              <p>الحصول على توصية</p>
+              <img src={img_3} alt="صوره اتخاذ القرار " />
+              <p>
+                اتخاذ القرار
+              </p>
             </div>
           </div>
         </section>

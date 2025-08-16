@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
+import {Header , Footer} from "../../components";
+
 import './Register.css'
-import Navbar from '../../components/Header/Navbar';
-// import logo from '../../assets/Logo-Icon.png';
-// import { Logo } from '../../components/Logo';
-import Footer from '../../components/Footer/Footer';
+
 export default function Register() {
   document.title = 'إنشاء حساب';
   const navigate = useNavigate();
   
-  // Egyptian governorates list
+ // Egyptian governorates list
   const governorates = [
   { govName: 'القاهرة', govId: 1 },
   { govName: 'الجيزة', govId: 2 },
@@ -92,21 +91,19 @@ export default function Register() {
     
     // If no errors, proceed with form submission
     if (Object.keys(newErrors).length === 0) {
-      // console.log('Form submitted successfully:', form);
-      console.log(form)
+
       navigate('/login');
     }
   };
   
   return (
     <>
-    <Navbar />
+    <Header />
     <div className="register-container" style={{flex:1}}>
 
       <div className="register-form">
 
         <form onSubmit={handleSubmit}>
-          {/* <Logo size="2" style={{backgroundColor:""}} /> */}
           <h1>
             
             إنشاء حساب

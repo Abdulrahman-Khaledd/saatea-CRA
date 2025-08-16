@@ -20,7 +20,7 @@ const logoStyle = {
 }
 
 
-export const Logo = ({size=2 , style}) => {
+export default function Logo({size=2 , style}) {
   return (
     <Link to="/">
     <div id="logo" style={{...logoStyle,...style}}>

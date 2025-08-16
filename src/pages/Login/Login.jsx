@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Header, Footer } from "../../components";
 import './Login.css';
-// import logo from '../../assets/Logo-Icon.png';
-import { Logo } from '../../components/Logo';
-import Navbar from '../../components/Header/Navbar';
-import Footer from '../../components/Footer/Footer';
 export default function Login() {
   document.title = 'تسجيل دخول';
+  const Navigate = useNavigate();
   const [form, setForm] = useState({
     phone: '',
     password: ''
@@ -30,23 +28,21 @@ export default function Login() {
 
     if (Object.keys(newErrors).length === 0) {
       // console.log('تم تسجيل الدخول:', form);
+      Navigate('/');
     }
   };
 
   return (
    <>
-   <Navbar/>
+   <Header/>
         <div className="login-container" style={{flex:1 ,justifuySelf:"center"}}>
     
           <div className="login-form">
     
             <form onSubmit={handleSubmit}>
-              {/* <Logo size="2" style={{backgroundColor:""}} /> */}
 
               <h1>
-                
                 تسجيل دخول
-                
               </h1>
 
               <div className="input-group">
@@ -80,7 +76,7 @@ export default function Login() {
             </form>
     
             <p className="auth-link">
-              ليس لديك حساب؟ <Link to="/signup">إنشاء حساب جديد</Link>
+              ليس لديك حساب؟ <Link to="/register">إنشاء حساب جديد</Link>
             </p>
           </div>
         </div>

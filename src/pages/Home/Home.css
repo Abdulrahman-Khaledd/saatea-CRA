@@ -198,8 +198,6 @@
 }
 
 .steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 2.5rem;
   margin-top: 4rem;
 }
@@ -215,6 +213,7 @@
   position: relative;
   overflow: hidden;
   animation: cardFade calc(var(--i, 0) * 0.2s) ease-out both;
+  width: 100%;
 }
 
 .steps>div:nth-child(1) {

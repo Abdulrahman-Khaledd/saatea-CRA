@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Navbar from "../../components/Header/Navbar";
-import Footer from "../../components/Footer/Footer";
-import "./contact.css";
+import { Header, Footer } from "../../components";
 import contactImage from "../../assets/Mention-cuate.svg";
+import "./Contact.css";
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -57,7 +57,8 @@ const Contact = () => {
 
   return (
     <>
-      <Navbar/>
+      <Header/>
+
       <div className="contact-page" style={{flex:1}}>
         <div className="contact-card">
           <div className="contact-form-section">
@@ -68,7 +69,7 @@ const Contact = () => {
 
             {isSubmitted && (
               <div className="success-message">
-                ✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+               تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
               </div>
             )}
 
