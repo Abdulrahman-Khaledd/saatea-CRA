@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Header, Footer } from "../../components";
-import contactImage from "../../assets/Mention-cuate.svg";
+import contactImage from "../../assets/pages_images/Mention-cuate.svg";
 import "./Contact.css";
 
 
@@ -57,7 +57,7 @@ const Contact = () => {
 
   return (
     <>
-      <Header/>
+      <Header pageLocation={'Contact'}/>
 
       <div className="contact-page" style={{flex:1}}>
         <div className="contact-card">
@@ -141,7 +141,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-info-section order-first">
-            <img src={contactImage} alt="اتصل بنا" className="contact-image" />
+            <img loading="lazy" src={contactImage} alt="اتصل بنا" className="contact-image" />
             <h2 className="info-title">تواصل معنا</h2>
             <div className="info-item">
               <i className="fas fa-phone-alt"></i>

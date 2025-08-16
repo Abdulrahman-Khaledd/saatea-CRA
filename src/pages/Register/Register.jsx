@@ -145,7 +145,7 @@ export default function Register() {
               className="governorate-select"
             >
               <option>اختر المحافظة </option>
-              {governorates.map((governorate, index) => (
+              {governorates.map((governorate) => (
                 <option key={governorate['govId']} value={governorate['govId']}>
                   {governorate['govName']}
                 </option>

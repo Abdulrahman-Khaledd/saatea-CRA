@@ -2,10 +2,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Header, Footer } from "../../components";
-import heroimg from "../../assets/hero-img.gif";
-import img_1 from "../../assets/New entries-cuate.svg";
-import img_2 from "../../assets/undraw_result_d6p8.svg";
-import img_3 from "../../assets/undraw_choice_dzxz.svg";
+import heroimg from "../../assets/pages_images/hero-img.gif";
+import img_1 from "../../assets/pages_images/New entries-cuate.svg";
+import img_2 from "../../assets/pages_images/undraw_result_d6p8.svg";
+import img_3 from "../../assets/pages_images/undraw_choice_dzxz.svg";
 import "./Home.css"
 
 
@@ -15,7 +15,7 @@ const [showPopup, setShowPopup] = useState(false);
   return (
     <>
 
-    <Header/>
+    <Header pageLocation={'Home'}/>
 
       <div className="home">
 
@@ -36,7 +36,7 @@ const [showPopup, setShowPopup] = useState(false);
             </Link>
           </div>
           <div className="hero-image-container">
-            <img src={heroimg} className="hero-image" alt="صورة متحركه للطاقه الشمسيه" />
+            <img loading="lazy" src={heroimg} className="hero-image" alt="صورة متحركه للطاقه الشمسيه" />
           </div>
         </section>
 
@@ -47,19 +47,19 @@ const [showPopup, setShowPopup] = useState(false);
           </h2>
           <div className="steps d-flex flex-column flex-lg-row justify-content-around align-items-center flex-wrap">
             <div>
-              <img src={img_1} alt="صوره إدخال البيانات" />
+              <img loading="lazy" src={img_1} alt="صوره إدخال البيانات" />
               <p>
                 أدخل بيانات الإستهلاك
               </p>
             </div>  
             <div>
-              <img src={img_2} alt="صوره رؤيه النتيجه" />
+              <img loading="lazy" src={img_2} alt="صوره رؤيه النتيجه" />
               <p>
                 رؤية النتيجة
               </p>
             </div>
             <div>
-              <img src={img_3} alt="صوره اتخاذ القرار " />
+              <img loading="lazy" src={img_3} alt="صوره اتخاذ القرار " />
               <p>
                 اتخاذ القرار
               </p>

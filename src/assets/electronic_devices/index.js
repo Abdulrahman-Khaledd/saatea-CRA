@@ -1,0 +1,15 @@
+export {default as airCondImg} from './air_condtioner.webp';
+export {default as fridgeImg} from './fridge.webp';
+export {default as washingMachineImg} from './washing_machine.webp';
+export {default as dishWasherImg} from './dishwasher.webp';
+export {default as microwaveImg} from './microwave.webp';
+export {default as electronicOvenImg} from './electronic_oven.webp';
+export {default as clothesIronImg} from './clothes_iron.webp';
+export {default as hairDryerImg} from './hair-dryer.webp';
+export {default as televisionImg} from './television.webp';
+export {default as pcComputerImg} from './pc-computer.webp';
+export {default as printerImg} from './printer.webp';
+export {default as ceilingFanImg} from './ceiling_fan.webp';
+export {default as waterHeaterImg} from './water_heater.webp';
+export {default as waterPumpImg} from './water_pump.webp';
+export {default as windowAirConditionerImg} from './window_air_conditioner.webp';

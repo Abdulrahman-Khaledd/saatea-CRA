@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Logo } from "../"
-import user_img from "../../assets/default-avatar.svg";
-import "./Header.css"
+import user_img from "../../assets/pages_images/default-avatar.svg";
+import "./header.css"
 
-export default function Header() {
+export default function Header({pageLocation}) {
   const isLoggedIn = localStorage.getItem("token") ? true : false;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false); 
@@ -41,15 +41,28 @@ export default function Header() {
         <nav className={`nav ${isMobileMenuOpen ? "active" : ""} d-flex align-items-lg-center`}>
           <div className="nav-links d-flex flex-md-row flex-column justify-content-between align-items-center">
         
-            <Link to="/" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+            {pageLocation == 'Home' ? <Link to="/" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               الرئيسية
-            </Link>
+            </Link> : <Link to="/" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+              الرئيسية
+            </Link> }
+            
+            { pageLocation == 'SolarCalculation' ? <Link to="/SolarCalculation" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+              حاسبة ساطع
+            </Link> : <Link to="/SolarCalculation" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+              حاسبة ساطع
+            </Link>}
+
             <Link to="/faq" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               الأسئلة
             </Link>
-            <Link to="/contact" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+
+            {pageLocation == 'Contact' ? <Link to="/contact" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               التواصل
-            </Link>
+            </Link> : <Link to="/contact" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+              التواصل
+            </Link>}
+
             <button
             className="nav-link"
             onClick={() => {
@@ -66,7 +79,7 @@ export default function Header() {
 
             {isLoggedIn ? (
               <Link to="/profile" className={`user-profile d-flex align-items-center gap-2`} onClick={()=>{setIsMobileMenuOpen(false)}}>
-                <img className="user-avatar" src={user_img} alt="المستخدم" />
+                <img className="user-avatar" loading="lazy" src={user_img} alt="المستخدم" />
                 {isMobileMenuOpen && (<div>حسابي</div>)}
               </Link>
             ) : (

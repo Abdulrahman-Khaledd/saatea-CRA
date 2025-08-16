@@ -1,6 +1,6 @@
 .header {
   background: rgba(255, 255, 255, 0.95);
-  padding: 0 2rem;
+  padding: 2.5rem 3rem;
   height: 75px;
   display: flex;
   align-items: center;
@@ -10,7 +10,11 @@
   z-index: 1000;
   transition: var(--transition);
   direction: rtl;
+  box-shadow: var(--shadow);
+  border-radius: 0 0 20px 20px;
+  border-bottom: 3px solid var(--secondary-light);
 }
+
 ::-webkit-scrollbar{width: 0;}
 
 /* NAVIGATION */
@@ -28,6 +32,10 @@
   padding: 10px 0 !important;
   transition: var(--transition) !important;
   margin-left:1rem;
+}
+
+.active-link{
+  border-bottom: 3px solid #FFB511;
 }
 
 .nav-link::after {

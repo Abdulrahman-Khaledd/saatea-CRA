@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import SunLogo from "../assets/sun-logo.svg"
+import SunLogo from "../assets/pages_images/sun-logo.svg"
 
 document.fonts.add(new FontFace("LogoFont","url('./DG_Sahabah_Reg.woff2')format('woff2')"))
 const textStyle = {    display: "inline-block",
