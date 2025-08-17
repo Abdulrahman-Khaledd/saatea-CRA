@@ -58,6 +58,43 @@
   background-color: #f2f2f2;
 }
 
+/* Solar Panel Location Select Styling */
+.register-container .solar-panel-location-select {
+  cursor: pointer;
+}
+
+.register-container .solar-panel-location-select option {
+  background-color: #f2f2f2;
+}
+
+/* Ensure both select fields have consistent styling */
+.register-container .input-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: white;
+  color: #333;
+}
+
+.register-container .input-group select:focus {
+  outline: none;
+  border-color: #FFB511;
+  box-shadow: 0 0 0 2px rgba(255, 181, 17, 0.2);
+}
+
+.register-container .input-group select option {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.register-container .input-group select option:hover {
+  background-color: #FFB511;
+  color: white;
+}
+
 .register-container .error {
   color: #dc3545;
   font-size: 12px;

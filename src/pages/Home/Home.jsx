@@ -12,6 +12,9 @@ import "./Home.css"
 export default function Home() {
 const [showPopup, setShowPopup] = useState(false);
 
+  document.title = 'ساطع';
+
+
   return (
     <>
 

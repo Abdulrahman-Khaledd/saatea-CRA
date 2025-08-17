@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Header, Footer } from "../../components";
 import {airCondImg, fridgeImg, washingMachineImg, dishWasherImg, microwaveImg, electronicOvenImg, clothesIronImg,hairDryerImg, televisionImg, pcComputerImg, printerImg, ceilingFanImg, waterHeaterImg, waterPumpImg, windowAirConditionerImg} from "../../assets/electronic_devices"
 import "./SolarCalculation.css";
-import { useNavigate } from "react-router-dom";
 
 const SolarCalculation = () => {
+  document.title = 'حاسبة ساطع';
+
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     location: "",
@@ -226,12 +227,12 @@ const SolarCalculation = () => {
     <div className="step-content text-center">
       <h3 className="mb-4">مكان الألواح؟</h3>
       <div className="form-group">
-        <select 
+        <select  
           className="form-select border border-3 form-select-lg text-center"
           value={formData.location}
           onChange={(e) => handleInputChange('location', e.target.value)}
         >
-          <option value="">اختر المحافظة</option>
+          <option>اختر المحافظة</option>
           {governorates.map((governorate) => (
             <option key={governorate['govId']} value={governorate['govId']}>
               {governorate['govName']}

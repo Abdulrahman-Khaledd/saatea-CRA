@@ -1,6 +1,8 @@
 export {default as Home} from './Home/Home'
 export {default as SolarCalculation} from './SolarCalculation/SolarCalculation'
+export {default as Faq} from './Faq/Faq'
 export {default as Contact} from './Contact/Contact'
 export {default as Login} from './Login/Login'
 export {default as Register} from './Register/Register'
 export {default as NotFound} from './NotFound/NotFound'
+export {default as Account} from './Account/Account'

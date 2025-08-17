@@ -53,9 +53,11 @@ export default function Header({pageLocation}) {
               حاسبة ساطع
             </Link>}
 
-            <Link to="/faq" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+            {pageLocation == 'Faq' ? <Link to="/faq" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               الأسئلة
-            </Link>
+            </Link> : <Link to="/faq" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+              الأسئلة
+            </Link>}
 
             {pageLocation == 'Contact' ? <Link to="/contact" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               التواصل
@@ -115,6 +117,7 @@ export default function Header({pageLocation}) {
           </div>
         </div>
       )}
+
 
     </>
   );

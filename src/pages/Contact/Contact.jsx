@@ -5,6 +5,7 @@ import "./Contact.css";
 
 
 const Contact = () => {
+  document.title = 'تواصل معنا';
   const [formData, setFormData] = useState({
     name: "",
     email: "",

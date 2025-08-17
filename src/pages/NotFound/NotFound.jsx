@@ -3,6 +3,7 @@ import { Header, Footer } from "../../components";
 import notFound from "../../assets/pages_images/not-found.svg";
 
 function NotFound() {
+  document.title = 'الصفحة غير موجودة';
   return (
     <>
       <Header />

@@ -43,6 +43,7 @@ export default function Register() {
     fullName: '',
     phone: '',
     goverment: 0,
+    solarPanelLocation: 0,
     password: '',
     confirmPassword: ''
   });
@@ -71,6 +72,11 @@ export default function Register() {
     // goverment validation
     if (!form.goverment) {
       newErrors.goverment = 'المحافظة مطلوبة';
+    }
+
+    // Solar panel location validation
+    if (!form.solarPanelLocation) {
+      newErrors.solarPanelLocation = 'مكان الالواح مطلوب';
     }
     
     // Password validation
@@ -152,6 +158,24 @@ export default function Register() {
               ))}
             </select>
             {errors.goverment && <span className="error">{errors.goverment}</span>}
+          </div>
+
+          <div className="input-group">
+            <select
+              name='solarPanelLocation'
+              id='solarPanelLocation'
+              value={form.solarPanelLocation}
+              onChange={(e) => setForm({...form, solarPanelLocation: parseInt(e.target.value)})}
+              className="solar-panel-location-select"
+            >
+              <option>اختر مكان الالواح </option>
+              {governorates.map((governorate) => (
+                <option key={governorate['govId']} value={governorate['govId']}>
+                  {governorate['govName']}
+                </option>
+              ))}
+            </select>
+            {errors.solarPanelLocation && <span className="error">{errors.solarPanelLocation}</span>}
           </div>
 
           <div className="input-group">
