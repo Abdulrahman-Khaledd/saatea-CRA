@@ -41,25 +41,25 @@ export default function Header({pageLocation}) {
         <nav className={`nav ${isMobileMenuOpen ? "active" : ""} d-flex align-items-lg-center`}>
           <div className="nav-links d-flex flex-md-row flex-column justify-content-between align-items-center">
         
-            {pageLocation == 'Home' ? <Link to="/" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+            {pageLocation === 'Home' ? <Link to="/" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               الرئيسية
             </Link> : <Link to="/" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               الرئيسية
             </Link> }
             
-            { pageLocation == 'SolarCalculation' ? <Link to="/SolarCalculation" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+            { pageLocation === 'SolarCalculation' ? <Link to="/SolarCalculation" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               حاسبة ساطع
             </Link> : <Link to="/SolarCalculation" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               حاسبة ساطع
             </Link>}
 
-            {pageLocation == 'Faq' ? <Link to="/faq" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+            {pageLocation === 'Faq' ? <Link to="/faq" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               الأسئلة
             </Link> : <Link to="/faq" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               الأسئلة
             </Link>}
 
-            {pageLocation == 'Contact' ? <Link to="/contact" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
+            {pageLocation === 'Contact' ? <Link to="/contact" className="active-link nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               التواصل
             </Link> : <Link to="/contact" className="nav-link" onClick={()=>{setIsMobileMenuOpen(false)}}>
               التواصل
@@ -80,7 +80,7 @@ export default function Header({pageLocation}) {
         <div className={`${isMobileMenuOpen && isLoggedIn ? "order-first" : "" } btn-group d-flex gap-3 align-items-center justify-content-lg-center justify-content-between`}>
 
             {isLoggedIn ? (
-              <Link to="/profile" className={`user-profile d-flex align-items-center gap-2`} onClick={()=>{setIsMobileMenuOpen(false)}}>
+              <Link to="/account" className={`user-profile d-flex align-items-center gap-2`} onClick={()=>{setIsMobileMenuOpen(false)}}>
                 <img className="user-avatar" loading="lazy" src={user_img} alt="المستخدم" />
                 {isMobileMenuOpen && (<div>حسابي</div>)}
               </Link>
@@ -108,10 +108,7 @@ export default function Header({pageLocation}) {
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
             <h3>من نحن؟</h3>
             <p>
-              "هدفنا في ساطع هو إننا نسهّل عليكم كل شيء لما يخص الطاقة الشمسية،
-              ونخليكم جزء من المستقبل في استخدام حلول الطاقة المتجددة. فلو
-              مستنيين تبدأوا، كل اللي عليكم هو إنكم تتابعونا في المراحل الجاية
-              من التطوير. إحنا جاهزين نكون معاكم في المستقبل!"
+              "نحن في ساطع نضع الابتكار والاستدامة في قلب كل ما نقوم به. نساعدك على استغلال الطاقة الشمسية لتوليد الكهرباء، تقليل فواتيرك، والمساهمة في تقليل الانبعاثات الضارة. رؤيتنا أن تصبح مصر رائدة في استخدام الطاقة النظيفة، ونفخر بأن نكون جزءًا من هذه الخطوة."
             </p>
             <button onClick={() => setShowPopup(false)}>خروج</button>
           </div>

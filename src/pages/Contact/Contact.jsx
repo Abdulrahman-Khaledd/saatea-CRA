@@ -13,7 +13,8 @@ const Contact = () => {
     message: "",
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState({color:"",message:"",appear:false});
 
 
   const validateForm = () => {
@@ -42,35 +43,83 @@ const Contact = () => {
     setErrors((prevErrors) => ({ ...prevErrors, [id]: "" }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validateForm()) {
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      setTimeout(() => setIsSubmitted(false), 5000);
+      setIsLoading(true);
+      const URL = process.env.NODE_ENV === "development" ? "http://192.168.1.20" : "https://saatea.great-site.net"
+
+      try {
+        const res = await fetch(URL + '/api/contact', {
+          method: 'POST',
+          body: JSON.stringify(formData),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          setIsSubmitted({
+            color: "success",
+            message: "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.",
+            appear: true
+          });
+        } else {
+          throw new Error("API returned failure");
+        }
+
+      } catch (err) {
+        setIsSubmitted({
+          color: "danger",
+          message: "حدثت مشكلة! حاول مرة اخرى في وقت لاحق.",
+          appear: true
+        });
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      }
     }
   };
+
+
+
 
   return (
     <>
       <Header pageLocation={'Contact'}/>
 
-      <div className="contact-page" style={{flex:1}}>
-        <div className="contact-card">
+      {isLoading && (        
+        <div className="loading-overlay">
+          <div className="loading-content text-center">
+            <div className="spinner-border text-primary mb-3" role="status">
+              <span className="visually-hidden">جاري التحميل...</span>
+            </div>
+              <h2>جاري الإرسال...</h2>
+          </div>
+        </div>
+      ) }
+
+
+      <main className="contact-page" style={{flex:1}}>
+        <div className="contact-card flex-column flex-md-row">
           <div className="contact-form-section">
             <h1 className="contact-title">اتصل بنا</h1>
             <p className="contact-subtitle">
               نحن هنا لمساعدتك والإجابة على استفساراتك.
             </p>
 
-            {isSubmitted && (
-              <div className="success-message">
-               تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.
+            {isSubmitted.appear && (
+              <div className={`${isSubmitted.color}-message`}>
+               {isSubmitted.message}
               </div>
             )}
 
@@ -144,11 +193,11 @@ const Contact = () => {
           <div className="contact-info-section order-first">
             <img loading="lazy" src={contactImage} alt="اتصل بنا" className="contact-image" />
             <h2 className="info-title">تواصل معنا</h2>
-            <div className="info-item">
+            <div className="info-item d-flex flex-row justify-content-center align-items-center">
               <i className="fas fa-phone-alt"></i>
               <span>201016058253+</span>
             </div>
-            <div className="info-item">
+            <div className="info-item d-flex flex-row justify-content-center align-items-center">
               <i className="fas fa-envelope"></i>
               <span>saatea.team@gmail.com</span>
             </div>
@@ -180,7 +229,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </>

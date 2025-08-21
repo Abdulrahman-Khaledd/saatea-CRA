@@ -10,17 +10,15 @@ import "./Home.css"
 
 
 export default function Home() {
-const [showPopup, setShowPopup] = useState(false);
-
+  const [showPopup, setShowPopup] = useState(false);
   document.title = 'ساطع';
-
 
   return (
     <>
 
     <Header pageLocation={'Home'}/>
 
-      <div className="home">
+      <main className="home">
 
         {/* Hero Section */}
         <section className="hero">
@@ -96,7 +94,7 @@ const [showPopup, setShowPopup] = useState(false);
             </div>
           </div>
         )}
-      </div>
+      </main>
     <Footer/>
     </>
   );

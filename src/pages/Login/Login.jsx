@@ -12,8 +12,8 @@ export default function Login() {
 
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const validateForm = () => {
+
     const newErrors = {};
 
     if (!form.phone) {
@@ -26,16 +26,53 @@ export default function Login() {
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length === 0) {
-      // console.log('تم تسجيل الدخول:', form);
-      Navigate('/');
+    return Object.keys(newErrors).length === 0;
+
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const URL = (process.env.NODE_ENV || 'production') === 'development'
+    ? 'http://192.168.1.20'
+    : 'https://saatea.great-site.net';
+
+
+    if (validateForm()) {
+
+      try{
+        const res = await fetch(URL + '/api/login',{
+          method: 'POST',
+          body:JSON.stringify(form),
+          headers: {
+          'Content-Type': 'application/json'
+          }
+
+        })
+
+        const data = await res.json()
+
+        if (data.success){
+          window.localStorage.setItem('token',data.token)
+          Navigate('/')
+        }
+
+        if (!data.success &&  data.error === "invalid_credentials"){
+          setErrors({password:'رقم الهاتف أو كلمة السر خاطئة!'})
+        }
+
+      }catch(err){
+        console.log('Error: ',err)
+      }
+
     }
   };
+
+
 
   return (
    <>
    <Header/>
-        <div className="login-container" style={{flex:1 ,justifuySelf:"center"}}>
+        <main className="login-container" style={{flex:1 ,justifuySelf:"center"}}>
     
           <div className="login-form">
     
@@ -79,7 +116,7 @@ export default function Login() {
               ليس لديك حساب؟ <Link to="/register">إنشاء حساب جديد</Link>
             </p>
           </div>
-        </div>
+        </main>
     <Footer/>
   </>
   );

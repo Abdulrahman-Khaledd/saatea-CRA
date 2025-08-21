@@ -1,92 +1,52 @@
 import { useState } from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
-import {Header , Footer} from "../../components";
+import { Link, useNavigate } from 'react-router-dom';
+import { Header , Footer } from '../../components';
+import { Govs } from '../../data'
 
 import './Register.css'
 
 export default function Register() {
   document.title = 'إنشاء حساب';
-  const navigate = useNavigate();
-  
- // Egyptian governorates list
-  const governorates = [
-  { govName: 'القاهرة', govId: 1 },
-  { govName: 'الجيزة', govId: 2 },
-  { govName: 'الإسكندرية', govId: 3 },
-  { govName: 'الدقهلية', govId: 4 },
-  { govName: 'الشرقية', govId: 5 },
-  { govName: 'المنوفية', govId: 6 },
-  { govName: 'الغربية', govId: 7 },
-  { govName: 'كفر الشيخ', govId: 8 },
-  { govName: 'دمياط', govId: 9 },
-  { govName: 'البحيرة', govId: 10 },
-  { govName: 'الإسماعيلية', govId: 11 },
-  { govName: 'بورسعيد', govId: 12 },
-  { govName: 'السويس', govId: 13 },
-  { govName: 'شمال سيناء', govId: 14 },
-  { govName: 'جنوب سيناء', govId: 15 },
-  { govName: 'بني سويف', govId: 16 },
-  { govName: 'الفيوم', govId: 17 },
-  { govName: 'المنيا', govId: 18 },
-  { govName: 'أسيوط', govId: 19 },
-  { govName: 'سوهاج', govId: 20 },
-  { govName: 'قنا', govId: 21 },
-  { govName: 'الأقصر', govId: 22 },
-  { govName: 'أسوان', govId: 23 },
-  { govName: 'الوادي الجديد', govId: 24 },
-  { govName: 'مطروح', govId: 25 },
-  { govName: 'البحر الأحمر', govId: 26 },
-];
-
+  const Navigate = useNavigate();
 
   const [form, setForm] = useState({
     fullName: '',
     phone: '',
     goverment: 0,
-    solarPanelLocation: 0,
     password: '',
     confirmPassword: ''
   });
 
-  const [errors, setErrors] = useState({});
+  const governorates = Govs
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = {};
+  const [errors, setErrors] = useState({});
+  const newErrors = {};
+
+  const validateForm = () => {
+
     
-    // Full name validation
     if (!form.fullName.trim()) {
       newErrors.fullName = 'الاسم الكامل مطلوب';
     } else if (form.fullName.trim().length < 3) {
       newErrors.fullName = 'الاسم الكامل يجب أن يكون 3 أحرف على الأقل';
     }
 
-    
-    // Phone validation
     if (!form.phone.trim()) {
       newErrors.phone = 'رقم الهاتف مطلوب';
     } else if (!/^(\+20|0)?1[0125][0-9]{8}$/.test(form.phone.replace(/\s/g, ''))) {
       newErrors.phone = 'رقم الهاتف غير صحيح';
     }
     
-    // goverment validation
     if (!form.goverment) {
       newErrors.goverment = 'المحافظة مطلوبة';
     }
 
-    // Solar panel location validation
-    if (!form.solarPanelLocation) {
-      newErrors.solarPanelLocation = 'مكان الالواح مطلوب';
-    }
-    
-    // Password validation
     if (!form.password) {
       newErrors.password = 'كلمة المرور مطلوبة';
     } else if (form.password.length < 8) {
       newErrors.password = 'كلمة المرور يجب أن تكون 8 أحرف على الأقل';
     }
     
-    // Confirm password validation
     if (!form.confirmPassword) {
       newErrors.confirmPassword = 'تأكيد كلمة المرور مطلوب';
     } else if (form.password !== form.confirmPassword) {
@@ -95,17 +55,62 @@ export default function Register() {
     
     setErrors(newErrors);
     
-    // If no errors, proceed with form submission
-    if (Object.keys(newErrors).length === 0) {
+    return Object.keys(newErrors).length === 0
 
-      navigate('/login');
+
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const URL = (process.env.NODE_ENV || 'production') === 'development'
+    ? 'http://192.168.1.20'
+    : 'https://saatea.great-site.net';
+
+    
+    if(validateForm()){
+
+      try {
+
+        const res = await fetch(URL + '/api/register' , {
+          method:'POST',
+          body:JSON.stringify({
+
+            name:form.fullName,
+            phone:form.phone,
+            gov_id:form.goverment,
+            password:form.password
+
+          }),
+          headers:{
+          'Content-Type': 'application/json'
+          }
+        })
+
+        const data = await res.json()
+        console.log(data)
+
+        if(data.success){
+          window.localStorage.setItem("token",data.token)
+          Navigate('/')
+
+        }
+
+        if (data.error === 'phone_exists'){
+          setErrors({ ...errors ,phone:'رقم الهاتف موجود بالفعل !'})
+        }
+        
+      } catch (err) {
+        console.log("Error: " ,err)
+      }
+
     }
+
   };
   
   return (
     <>
     <Header />
-    <div className="register-container" style={{flex:1}}>
+    <main className="register-container" style={{flex:1}}>
 
       <div className="register-form">
 
@@ -152,32 +157,13 @@ export default function Register() {
             >
               <option>اختر المحافظة </option>
               {governorates.map((governorate) => (
-                <option key={governorate['govId']} value={governorate['govId']}>
-                  {governorate['govName']}
+                <option key={governorate['id']} value={governorate['id']}>
+                  {governorate['name']}
                 </option>
               ))}
             </select>
             {errors.goverment && <span className="error">{errors.goverment}</span>}
-          </div>
-
-          <div className="input-group">
-            <select
-              name='solarPanelLocation'
-              id='solarPanelLocation'
-              value={form.solarPanelLocation}
-              onChange={(e) => setForm({...form, solarPanelLocation: parseInt(e.target.value)})}
-              className="solar-panel-location-select"
-            >
-              <option>اختر مكان الالواح </option>
-              {governorates.map((governorate) => (
-                <option key={governorate['govId']} value={governorate['govId']}>
-                  {governorate['govName']}
-                </option>
-              ))}
-            </select>
-            {errors.solarPanelLocation && <span className="error">{errors.solarPanelLocation}</span>}
-          </div>
-
+          </div> 
           <div className="input-group">
             <input
               name='password'
@@ -211,7 +197,7 @@ export default function Register() {
           لديك حساب بالفعل؟ <Link to="/login">تسجيل دخول</Link>
         </p>
       </div>
-    </div>
+    </main>
     <Footer/>
     </>
   );

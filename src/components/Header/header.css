@@ -10,9 +10,6 @@
   z-index: 1000;
   transition: var(--transition);
   direction: rtl;
-  box-shadow: var(--shadow);
-  border-radius: 0 0 20px 20px;
-  border-bottom: 3px solid var(--secondary-light);
 }
 
 ::-webkit-scrollbar{width: 0;}

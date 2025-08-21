@@ -42,7 +42,7 @@ function Faq() {
   return (
     <>
       <Header pageLocation={'Faq'} />
-      <div className="faq-section container border border-3">
+      <main className="faq-section container" style={{flex:1}}>
         <div className="faq-content">
           <div className="faq-accordion" dir="rtl">
             <h2 className="faq-title">الأسئلة الشائعة</h2>
@@ -71,7 +71,7 @@ function Faq() {
             />
           </div>
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   );

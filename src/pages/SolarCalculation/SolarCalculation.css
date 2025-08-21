@@ -1,33 +1,3 @@
-/* Import fonts and icons */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-
-/* :root {
-    --primary: #FFB511;
-    --primary-light: #ffc440;
-    --secondary: #e67e22;
-    --dark: #2c3e50;
-    --gray: #7f8c8d;
-    --light-gray: #ecf0f1;
-    --white: #ffffff;
-    --bg-color: #f4f6f8;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --radius: 10px;
-    --radius-lg: 15px;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Tajawal', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--dark);
-    direction: rtl;
-} */
-
 /* Solar Calculation Container */
 .solar-calculation-container {
     max-width: 800px;
@@ -64,7 +34,7 @@ body {
 }
 
 .progress-bar {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background: var(--primary);
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -137,23 +107,23 @@ body {
 }
 
 /* Form Elements */
-.form-select, .form-control {
+.solar-calculation-container .form-select, .form-control {
     border: 2px solid var(--light-gray);
     border-radius: var(--radius);
     padding: 0.75rem 1rem;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
 }
 
-.form-select:focus, .form-control:focus {
-    border-color: var(--primary);
+.solar-calculation-container .form-select:focus, .solar-calculation-container .form-control:focus {
+    border-color: var(--primary); 
     box-shadow: 0 0 0 0.2rem rgba(255, 181, 17, 0.25);
     transform: translateY(-2px);
 }
 
 /* Custom Select Styling - Arrow on Left */
-.form-select {
+.solar-calculation-container .form-select {
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -165,17 +135,17 @@ body {
     direction: rtl;
 }
 
-.form-select:hover {
+.solar-calculation-container .form-select:hover {
     cursor: pointer;
     border-color: var(--primary);
 }
 
-.form-select:focus {
+.solar-calculation-container .form-select:focus {
     cursor: pointer;
 }
 
 /* Buttons */
-.btn {
+.solar-calculation-container .btn , .results-container .btn {
     border-radius: var(--radius);
     font-weight: 600;
     padding: 0.75rem 1.5rem;
@@ -183,42 +153,48 @@ body {
     border: none;
 }
 
-.btn-primary {
+.solar-calculation-container .btn-primary, .results-container .btn-primary {
     background-color: var(--primary);
     color: var(--white);
 }
 
-.btn-primary:hover {
+.solar-calculation-container .btn-primary:hover , .results-container .btn-primary:hover {
     background-color: var(--primary-light);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+
 }
 
-.btn-outline-primary {
+.solar-calculation-container .btn-outline-primary {
     border: 2px solid var(--primary);
     color: var(--primary);
     background-color: transparent;
 }
 
-.btn-outline-primary:hover {
+.solar-calculation-container .btn-outline-primary:hover {
+    border: 2px solid var(--primary);
+
     background-color: var(--primary);
     color: var(--white);
 }
+.solar-calculation-container .btn-outline-primary:active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary);
+    color: var(--white);
+}
 
-.btn-success {
+.solar-calculation-container .btn-success {
     background-color: #28a745;
 }
 
-.btn-success:hover {
+.solar-calculation-container .btn-success:hover {
     background-color: #218838;
     transform: translateY(-2px);
 }
 
-.btn-secondary {
+.solar-calculation-container .btn-secondary {
     background-color: var(--gray);
 }
 
-.btn:disabled {
+.solar-calculation-container .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none !important;
@@ -279,8 +255,11 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    color: var(--white);
     margin-bottom: 1rem;
 }
+
+.quantity-selector button , .quantity-selector button:hover {color: var(--white);}
 
 .quantity-display {
     font-size: 1.2rem;
@@ -294,51 +273,6 @@ body {
 .step-navigation {
     padding-top: 2rem;
     border-top: 1px solid var(--light-gray);
-}
-
-/* Loading Overlay */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.loading-content {
-    background: var(--white);
-    padding: 3rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    text-align: center;
-    animation: loadingEntrance 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes loadingEntrance {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.loading-content h2 {
-    color: var(--dark);
-    font-weight: 700;
-    margin-top: 1rem;
-}
-
-.spinner-border {
-    width: 3rem;
-    height: 3rem;
 }
 
 /* Results Container */
@@ -369,7 +303,7 @@ body {
 }
 
 .result-card {
-    background: linear-gradient(135deg, var(--secondary-dark), var( --secondary-light));
+    background: linear-gradient(var(--secondary) );
     color: var(--white);
     padding: 2rem;
     border-radius: var(--radius);
@@ -394,6 +328,8 @@ body {
     font-weight: 700;
     margin: 0;
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -428,7 +364,7 @@ body {
         font-size: 1rem;
     }
     
-    .btn {
+    .solar-calculation-container .btn {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
@@ -548,9 +484,9 @@ body {
 }
 
 /* Focus states for accessibility */
-.btn:focus,
-.form-select:focus,
-.form-control:focus {
+.solar-calculation-container .btn:focus,
+.solar-calculation-container .form-select:focus,
+.solar-calculation-container .form-control:focus {
     outline: 2px solid var(--dark);
     outline-offset: 2px;
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Header, Footer } from "../../components";
 import {airCondImg, fridgeImg, washingMachineImg, dishWasherImg, microwaveImg, electronicOvenImg, clothesIronImg,hairDryerImg, televisionImg, pcComputerImg, printerImg, ceilingFanImg, waterHeaterImg, waterPumpImg, windowAirConditionerImg} from "../../assets/electronic_devices"
 import "./SolarCalculation.css";
+import { Govs } from "../../data";
 
 const SolarCalculation = () => {
   document.title = 'حاسبة ساطع';
@@ -38,34 +39,7 @@ const SolarCalculation = () => {
     { id: 15, name: "مكيف شباك", image: windowAirConditionerImg},
   ];
 
-  const governorates = [
-    { govName: 'القاهرة', govId: 1 },
-    { govName: 'الجيزة', govId: 2 },
-    { govName: 'الإسكندرية', govId: 3 },
-    { govName: 'الدقهلية', govId: 4 },
-    { govName: 'الشرقية', govId: 5 },
-    { govName: 'المنوفية', govId: 6 },
-    { govName: 'الغربية', govId: 7 },
-    { govName: 'كفر الشيخ', govId: 8 },
-    { govName: 'دمياط', govId: 9 },
-    { govName: 'البحيرة', govId: 10 },
-    { govName: 'الإسماعيلية', govId: 11 },
-    { govName: 'بورسعيد', govId: 12 },
-    { govName: 'السويس', govId: 13 },
-    { govName: 'شمال سيناء', govId: 14 },
-    { govName: 'جنوب سيناء', govId: 15 },
-    { govName: 'بني سويف', govId: 16 },
-    { govName: 'الفيوم', govId: 17 },
-    { govName: 'المنيا', govId: 18 },
-    { govName: 'أسيوط', govId: 19 },
-    { govName: 'سوهاج', govId: 20 },
-    { govName: 'قنا', govId: 21 },
-    { govName: 'الأقصر', govId: 22 },
-    { govName: 'أسوان', govId: 23 },
-    { govName: 'الوادي الجديد', govId: 24 },
-    { govName: 'مطروح', govId: 25 },
-    { govName: 'البحر الأحمر', govId: 26 },
-  ];
+  const governorates = Govs 
 
   const installationTypes = ["شقة", "فيلا", "شركة"];
 
@@ -234,8 +208,8 @@ const SolarCalculation = () => {
         >
           <option>اختر المحافظة</option>
           {governorates.map((governorate) => (
-            <option key={governorate['govId']} value={governorate['govId']}>
-              {governorate['govName']}
+            <option key={governorate['id']} value={governorate['id']}>
+              {governorate['name']}
             </option>
           ))}
         </select>
@@ -246,7 +220,7 @@ const SolarCalculation = () => {
   const renderStep2 = () => (
     <div className="step-content text-center">
       <h3 className="mb-4">هل الاستهلاك ثابت؟</h3>
-      <div className="d-flex justify-content-center gap-3 flex-wrap">
+      <div className="d-flex justify-content-center align-items-center gap-3 flex-wrap">
         <button
           className={`btn btn-lg ${formData.isConsumptionFixed === 'fixed' ? 'btn-primary' : 'btn-outline-primary'}`}
           onClick={() => handleInputChange('isConsumptionFixed', 'fixed')}
@@ -278,7 +252,7 @@ const SolarCalculation = () => {
 
     return (
       <div className="step-content">
-        <h3 className="mb-4 text-center">برجاء إدخال الأجهزة الموجودة وعدد ساعات التشغيل</h3>
+        <h3 className="mb-4 text-center">برجاء إدخال عدد الأجهزة الموجودة وعدد ساعات التشغيل</h3>
         
         {/* Summary display */}
         <div className="alert alert-info text-center mb-4">
@@ -310,7 +284,7 @@ const SolarCalculation = () => {
                 <input
                   type="number"
                   className="form-control mt-2"
-                  placeholder="استهلاك يومي (كيلو وات)"
+                  placeholder="كم ساعه تستخدم هذا الجهاز في اليوم"
                   value={data.dailyConsumption || ''}
                   onChange={(e) => handleApplianceChange(appliance.id, 'dailyConsumption', parseFloat(e.target.value) || 0)}
                   min="0"
@@ -345,19 +319,13 @@ const SolarCalculation = () => {
   const renderStep5 = () => (
     <div className="step-content text-center">
       <h3 className="mb-4">هل توافق على الاعتماد على شركة الكهرباء في الليل او وقت الغيوم؟</h3>
-      <div className="d-flex justify-content-center gap-3">
+      <div className="d-flex justify-content-center align-items-center gap-3">
         <button
           className={`btn btn-lg ${formData.agreeToDisclosure === true ? 'btn-primary' : 'btn-outline-primary'}`}
           onClick={() => handleInputChange('agreeToDisclosure', true)}
         >
           نعم
-        </button>
-        <button
-          className={`btn btn-lg ${formData.agreeToDisclosure === false ? 'btn-primary' : 'btn-outline-primary'}`}
-          onClick={() => handleInputChange('agreeToDisclosure', false)}
-        >
-          لا
-        </button>
+        </button>   
       </div>
     </div>
   );
@@ -397,9 +365,12 @@ const SolarCalculation = () => {
           </div>
         </div>
       </div>
-      <div className="text-center mt-4">
-        <button className="btn btn-primary btn-lg" onClick={() => window.location.reload()}>
+      <div className="text-center mt-4 d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+        <button className="btn btn-primary btn-lg w-100" onClick={() => window.location.reload()}>
           إحسب مرة اخرى
+        </button>
+        <button className="btn btn-success w-100 w btn-lg">
+          أطبع النتيجة
         </button>
       </div>
     </div>
@@ -409,6 +380,7 @@ const SolarCalculation = () => {
     return (
       <>
         <Header pageLocation={'SolarCalculation'}/>
+        <main className="placeholder-div" style={{flex:1}}></main>
         <div className="loading-overlay">
           <div className="loading-content text-center">
             <div className="spinner-border text-primary mb-3" role="status">
@@ -426,9 +398,9 @@ const SolarCalculation = () => {
     return (
       <>
         <Header pageLocation={'SolarCalculation'} />
-        <div className="container mt-5 mb-5">
+        <main className="container mt-5 mb-5">
           {renderResults()}
-        </div>
+        </main>
         <Footer />
       </>
     );
@@ -437,8 +409,8 @@ const SolarCalculation = () => {
   return (
     <>
       <Header pageLocation={'SolarCalculation'} />
-      <div className="container mt-5 mb-5">
-        <div className="solar-calculation-container border border-3 border-secondary">
+      <main className="container mt-5 mb-5">
+        <div className="solar-calculation-container">
           <div className="progress-container mb-4">
             <div className="progress">
               <div 
@@ -466,7 +438,7 @@ const SolarCalculation = () => {
             {currentStep === 5 && renderStep5()}
           </div>
 
-          <div className="step-navigation d-flex justify-content-between mt-4">
+          <div className="step-navigation d-flex justify-content-between mt-4 gap-2">
             <button
               className="btn btn-secondary btn-lg"
               onClick={prevStep}
@@ -477,7 +449,7 @@ const SolarCalculation = () => {
             
             {currentStep === 5 ? (
               <button
-                className="btn btn-success btn-lg"
+                className="btn btn-primary btn-lg"
                 onClick={handleSubmit}
                 disabled={!canProceed()}
               >
@@ -494,7 +466,7 @@ const SolarCalculation = () => {
             )}
           </div>
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   );

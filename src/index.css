@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap');
-
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 :root {
   --primary: #FFB511;
   --primary-dark: #e6a610;
@@ -27,7 +27,7 @@
 
 body{
     background-color: #f2f2f2 !important;
-    font-family: 'Baloo Bhaijaan 2', sans-serif;
+    font-family: 'Baloo Bhaijaan 2', sans-serif !important;
     direction: rtl;
 
 }
@@ -36,4 +36,51 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    animation: loadingEntrance 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes loadingEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.loading-content h2 {
+  color: var(--dark);
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  color: var(--primary) !important;
 }

@@ -2,9 +2,6 @@
     min-height: 80vh;
     padding: 2rem 1rem;
     margin-block: 2rem;
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
     overflow: hidden;
 }
 
@@ -43,7 +40,7 @@
 }
 
 .accordion-header {
-    background: var(--gradient-secondary-dark);
+    background: var(--primary);
     color: white;
     padding: 1.5rem;
     cursor: pointer;
@@ -55,12 +52,9 @@
 }
 
 .accordion-header:hover {
-    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    background: var(--primary-dark)
 }
 
-.accordion-header.active {
-    background: var(--gradient-secondary);
-}
 
 .accordion-title {
     font-size: 1.1rem;
@@ -114,13 +108,9 @@
     height: 400px;
     object-fit: contain;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
-.faq-gif:hover {
-    transform: scale(1.05);
-}
 
 /* Responsive Design */
 

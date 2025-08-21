@@ -1,33 +1,3 @@
-/* Import fonts and icons */
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-
-/* :root {
-    --primary: #FFB511;
-    --primary-light: #ffc440;
-    --secondary: #e67e22;
-    --dark: #2c3e50;
-    --gray: #7f8c8d;
-    --light-gray: #ecf0f1;
-    --white: #ffffff;
-    --bg-color: #f4f6f8;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --radius: 10px;
-    --radius-lg: 15px;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Tajawal', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--dark);
-    direction: rtl;
-} */
-
 .contact-page {
     display: flex;
     justify-content: center;
@@ -39,6 +9,7 @@ body {
 .contact-card {
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
     width: 95%;
     max-width: 1200px;
     background-color: var(--white);
@@ -85,7 +56,6 @@ body {
 
 .form-group label {
     font-weight: 700;
-    /* color: var(--dark); */
     font-size: 1rem;
 }
 
@@ -96,7 +66,6 @@ body {
     border: 1px solid var(--light-gray);
     border-radius: var(--radius);
     font-size: 1rem;
-    /* color: var(--dark); */
     background-color: var(--light-gray);
     transition: all 0.3s ease;
 }
@@ -160,10 +129,19 @@ body {
     font-weight: 700;
 }
 
+.danger-message {
+    background-color: #e23c29;
+    color: #fff;
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+}
+
 /* Info Section */
 .contact-info-section {
     flex: 1;
-    /* background-color: var(--prima); */
     color: var(--white);
     padding: 3rem;
     display: flex;
@@ -178,7 +156,6 @@ body {
     max-width: 80%;
     height: auto;
     border-radius: var(--radius);
-    /* box-shadow: var(--shadow); */
     margin-bottom: 1.5rem;
 }
 

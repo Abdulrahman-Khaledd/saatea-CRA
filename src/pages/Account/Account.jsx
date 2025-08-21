@@ -1,55 +1,69 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header, Footer } from "../../components";
 import defaultAvatar from '../../assets/pages_images/default-avatar.svg';
+import { Govs } from '../../data';
+import { Link } from 'react-router-dom';
 import './Account.css';
 
 function Account() {
   document.title = 'حسابك الشخصي';
 
-  // Mock user data - in real app this would come from authentication context or API
-  const [userData] = useState({
-    fullName: 'أحمد محمد علي',
-    phone: '+201234567890',
-    governorate: 1, // القاهرة
-    solarPanelLocation: 2, // الجيزة
-    email: 'ahmed.mohamed@example.com',
-    joinDate: '2024-01-15',
-    lastLogin: '2024-01-20'
+  const [userData,setUserData] = useState({
+    fullName: '',
+    phone: '',
+    governorate: 0, 
+    joinDate: '',
+    lastLogin: ''
   });
+  
 
-  // Egyptian governorates list (same as Register.jsx)
-  const governorates = [
-    { govName: 'القاهرة', govId: 1 },
-    { govName: 'الجيزة', govId: 2 },
-    { govName: 'الإسكندرية', govId: 3 },
-    { govName: 'الدقهلية', govId: 4 },
-    { govName: 'الشرقية', govId: 5 },
-    { govName: 'المنوفية', govId: 6 },
-    { govName: 'الغربية', govId: 7 },
-    { govName: 'كفر الشيخ', govId: 8 },
-    { govName: 'دمياط', govId: 9 },
-    { govName: 'البحيرة', govId: 10 },
-    { govName: 'الإسماعيلية', govId: 11 },
-    { govName: 'بورسعيد', govId: 12 },
-    { govName: 'السويس', govId: 13 },
-    { govName: 'شمال سيناء', govId: 14 },
-    { govName: 'جنوب سيناء', govId: 15 },
-    { govName: 'بني سويف', govId: 16 },
-    { govName: 'الفيوم', govId: 17 },
-    { govName: 'المنيا', govId: 18 },
-    { govName: 'أسيوط', govId: 19 },
-    { govName: 'سوهاج', govId: 20 },
-    { govName: 'قنا', govId: 21 },
-    { govName: 'الأقصر', govId: 22 },
-    { govName: 'أسوان', govId: 23 },
-    { govName: 'الوادي الجديد', govId: 24 },
-    { govName: 'مطروح', govId: 25 },
-    { govName: 'البحر الأحمر', govId: 26 },
-  ];
+  
+  
+  useEffect(()=>{
+    const fetchData = async ()=>{
+
+      const URL = (process.env.NODE_ENV || 'production') === 'development'
+      ? 'http://192.168.1.20'
+      : 'https://saatea.great-site.net';
+      
+      try {
+        
+        const res = await fetch(URL + '/api/myaccount',{
+          method:'POST',
+          headers:{
+          'Authorization':`Bearer ${localStorage.getItem('token')}`,
+          'Content-Type':'application/json'
+          }
+
+        })
+
+        const data = await res.json()
+
+        if (data.success){
+
+          setUserData({
+            fullName : data.name,
+            phone : data.phone,
+            governorate : data.gov,
+            joinDate : data.join_date,
+            lastLogin : data.last_login
+          })
+
+        }
+
+      } catch (err) {
+        console.log("Error: ",err)
+      }
+
+    }
+
+    fetchData()
+
+  },[])
 
   const getGovernorateName = (govId) => {
-    const governorate = governorates.find(gov => gov.govId === govId);
-    return governorate ? governorate.govName : 'غير محدد';
+    const governorate = Govs.find(gov => gov.id === govId);
+    return governorate ? governorate.name : 'غير محدد';
   };
 
   const formatDate = (dateString) => {
@@ -64,12 +78,12 @@ function Account() {
   return (
     <>
       <Header />
-      <div className="account-container">
+      <main className="account-container" style={{flex:1}} >
         <div className="account-card">
           {/* Account Header with Logo */}
           <div className="account-header">
             <div className="account-avatar">
-              <img src={defaultAvatar} alt="صورة الحساب" className="avatar-image" />
+              <img src={defaultAvatar} alt="صورة الحساب" className="avatar-image" width={120} />
             </div>
             <div className="account-title">
               <h1>حسابك الشخصي</h1>
@@ -88,11 +102,7 @@ function Account() {
                 </div>
                 <div className="info-item">
                   <label>رقم الهاتف:</label>
-                  <span dir='ltr'>{userData.phone}</span>
-                </div>
-                <div className="info-item">
-                  <label>البريد الإلكتروني:</label>
-                  <span>{userData.email}</span>
+                  <span dir='ltr'>+2{userData.phone}</span>
                 </div>
               </div>
             </div>
@@ -103,10 +113,6 @@ function Account() {
                 <div className="info-item">
                   <label>المحافظة:</label>
                   <span>{getGovernorateName(userData.governorate)}</span>
-                </div>
-                <div className="info-item">
-                  <label>مكان الألواح:</label>
-                  <span>{getGovernorateName(userData.solarPanelLocation)}</span>
                 </div>
               </div>
             </div>
@@ -127,18 +133,16 @@ function Account() {
           </div>
 
           {/* Action Buttons */}
+
           <div className="account-actions">
-            <button className="btn btn-primary">
-              <i className="fas fa-edit"></i>
-              تعديل المعلومات
-            </button>
-            <button className="btn btn-secondary">
-              <i className="fas fa-cog"></i>
-              إعدادات الحساب
-            </button>
+            <Link to="/login" className="btn btn-danger" onClick={()=>{window.localStorage.removeItem('token')}} >
+              <i className="fas fa-sign-out"></i>
+              تسجيل خروج
+            </Link>
           </div>
+          
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   );
