@@ -1,7 +1,7 @@
 /* Solar Calculation Container */
 .solar-calculation-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 2.7rem auto;
     background: var(--white);
     border-radius: var(--radius-lg);
     padding: 2rem;
@@ -243,11 +243,17 @@
     color: black;
 }
 
-.appliance-name {
+.appliance-name{
     color: var(--dark);
     font-weight: 700;
     margin-bottom: 1rem;
     font-size: 1.1rem;
+}
+
+.appliance-averagePregnancy{
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .quantity-selector {

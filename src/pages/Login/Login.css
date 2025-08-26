@@ -58,6 +58,42 @@
   background-color: #f2f2f2;
 }
 
+/* Password input container styling */
+.login-container .password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-container .password-input-container input {
+  width: 340px;
+}
+
+.login-container .password-toggle-btn {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.login-container .password-toggle-btn:hover {
+  color: #FFB511;
+}
+
+.login-container .password-toggle-btn:focus {
+  outline: none;
+  color: #FFB511;
+}
+
 .login-container .error {
   color: #dc3545;
   font-size: 12px;

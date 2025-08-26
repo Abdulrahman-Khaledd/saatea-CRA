@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Header, Footer } from "../../components";
-import {airCondImg, fridgeImg, washingMachineImg, dishWasherImg, microwaveImg, electronicOvenImg, clothesIronImg,hairDryerImg, televisionImg, pcComputerImg, printerImg, ceilingFanImg, waterHeaterImg, waterPumpImg, windowAirConditionerImg} from "../../assets/electronic_devices"
+import {airCondImg, fridgeImg, washingMachineImg, dishWasherImg, microwaveImg, electronicOvenImg, clothesIronImg,hairDryerImg, televisionImg, pcComputerImg, printerImg, ceilingFanImg, waterHeaterImg, waterPumpImg, windowAirConditionerImg, energySavingLampImg, fluorescentLampImg, regularLampImg, handBlenderImg, breadMakerImg, toasterImg, multifunctionBlenderImg, roomCoolerImg, waterCoolerImg, exhaustFanImg, deepFreezerImg, roomHeaterImg, kettleImg, handDryerImg, laptopImg, scannerImg, faxImg, playstationImg, xboxImg, lcdTelevisionImg, regularTelevisionImg, dvdImg, radioImg, receiverImg, homeTheaterImg, walkingMachineImg, exerciseBikeImg, orbitrekImg, crazyFitImg, waterPurifierImg, insectZapperImg, vacuumCleanerImg, airPurifierImg, sewingMachineImg, cordlessPhoneImg, mobileChargerImg, regularFanImg} from "../../assets/electronic_devices"
 import "./SolarCalculation.css";
 import { Govs } from "../../data";
 
@@ -22,21 +22,58 @@ const SolarCalculation = () => {
 
 
   const appliancesList = [
-    { id: 1, name: "مكيف هواء", image: airCondImg },
-    { id: 2, name: "ثلاجة", image: fridgeImg},
-    { id: 3, name: "غسالة ملابس", image: washingMachineImg},
-    { id: 4, name: "غسالة صحون", image: dishWasherImg},
-    { id: 5, name: "ميكروويف", image: microwaveImg},
-    { id: 6, name: "فرن كهربائي", image: electronicOvenImg},
-    { id: 7, name: "مكواة", image: clothesIronImg },
-    { id: 8, name: "مجفف شعر", image: hairDryerImg },
-    { id: 9, name: "شاشة تلفاز", image: televisionImg},
-    { id: 10, name: "كمبيوتر", image: pcComputerImg},
-    { id: 11, name: "طابعة", image: printerImg },
-    { id: 12, name: "مروحة سقف", image: ceilingFanImg},
-    { id: 13, name: "سخان مياه", image: waterHeaterImg},
-    { id: 14, name: "مضخة مياه", image: waterPumpImg},
-    { id: 15, name: "مكيف شباك", image: windowAirConditionerImg},
+    { id: 1, name: "مكيف هواء", image: airCondImg, averagePregnancy: 1250 },
+    { id: 2, name: "ثلاجة", image: fridgeImg, averagePregnancy: 550},
+    { id: 3, name: "غسالة ملابس", image: washingMachineImg, averagePregnancy: 700},
+    { id: 4, name: "غسالة صحون", image: dishWasherImg, averagePregnancy: 650},
+    { id: 5, name: "ميكروويف", image: microwaveImg, averagePregnancy: 1000},
+    { id: 6, name: "فرن كهربائي", image: electronicOvenImg , averagePregnancy: 1250},
+    { id: 7, name: "مكواة", image: clothesIronImg, averagePregnancy: 800 },
+    { id: 8, name: "مجفف شعر", image: hairDryerImg, averagePregnancy: 1200 },
+    { id: 9, name: "شاشة تلفاز", image: televisionImg, averagePregnancy: 325},
+    { id: 10, name: "كمبيوتر", image: pcComputerImg, averagePregnancy: 200},
+    { id: 11, name: "طابعة", image: printerImg, averagePregnancy: 185 },
+    { id: 12, name: "مروحة سقف", image: ceilingFanImg, averagePregnancy: 65},
+    { id: 13, name: "سخان مياه", image: waterHeaterImg, averagePregnancy: 3000},
+    { id: 14, name: "مضخة مياه", image: waterPumpImg, averagePregnancy: 932},
+    { id: 15, name: "مكيف شباك", image: windowAirConditionerImg, averagePregnancy: 1170},
+    { id: 16, name: "مصابيح موفرة", image: energySavingLampImg, averagePregnancy: 14.5 },
+    { id: 17, name: "مصابيح فلورسنت", image: fluorescentLampImg, averagePregnancy: 40 },
+    { id: 18, name: "مصابيح", image: regularLampImg, averagePregnancy: 62.5 },
+    { id: 19, name: "خلاط يدوي (هاند بليندر)", image: handBlenderImg, averagePregnancy: 287.5 },
+    { id: 20, name: "صانع الخبز", image: breadMakerImg, averagePregnancy: 875 },
+    { id: 21, name: "محمصة", image: toasterImg, averagePregnancy: 750 },
+    { id: 22, name: "خلاط متعدد المهام", image: multifunctionBlenderImg, averagePregnancy: 600 },
+    { id: 23, name: "مبرد غرفة", image: roomCoolerImg, averagePregnancy: 130 },
+    { id: 24, name: "مبرد مياه", image: waterCoolerImg, averagePregnancy: 68 },
+    { id: 25, name: "مروحة شفط", image: exhaustFanImg, averagePregnancy: 115 },
+    { id: 26, name: "ديب فريزر", image: deepFreezerImg, averagePregnancy: 1166 },
+    { id: 27, name: "مدفأة غرفة", image: roomHeaterImg, averagePregnancy: 1500 },
+    { id: 28, name: "غلاية مياه", image: kettleImg, averagePregnancy: 2250 },
+    { id: 29, name: "مجفف اليد", image: handDryerImg, averagePregnancy: 1625 },
+    { id: 30, name: "لابتوب", image: laptopImg, averagePregnancy: 150 },
+    { id: 31, name: "ماسح ضوئي", image: scannerImg, averagePregnancy: 100 },
+    { id: 32, name: "فاكس", image: faxImg, averagePregnancy: 120 },
+    { id: 33, name: "بلاي ستيشن", image: playstationImg, averagePregnancy: 190 },
+    { id: 34, name: "اكس بوكس", image: xboxImg, averagePregnancy: 200 },
+    { id: 35, name: "تلفزيون LCD", image: lcdTelevisionImg, averagePregnancy: 200 },
+    { id: 36, name: "تلفزيون عادي", image: regularTelevisionImg, averagePregnancy: 225 },
+    { id: 37, name: "دي في دي", image: dvdImg, averagePregnancy: 70 },
+    { id: 38, name: "راديو", image: radioImg, averagePregnancy: 400 },
+    { id: 39, name: "ريسيفر", image: receiverImg, averagePregnancy: 30 },
+    { id: 40, name: "مسرح منزلي", image: homeTheaterImg, averagePregnancy: 100 },
+    { id: 41, name: "الة تمارين المشي", image: walkingMachineImg, averagePregnancy: 1650 },
+    { id: 42, name: "العجلة الرياضية", image: exerciseBikeImg, averagePregnancy: 1100 },
+    { id: 43, name: "اوبتراك", image: orbitrekImg, averagePregnancy: 1540 },
+    { id: 44, name: "كرازي فيت", image: crazyFitImg, averagePregnancy: 1700 },
+    { id: 45, name: "جهاز تنقية المياه", image: waterPurifierImg, averagePregnancy: 37.5 },
+    { id: 46, name: "صاعق الحشرات", image: insectZapperImg, averagePregnancy: 100 },
+    { id: 47, name: "مكنسة كهربية", image: vacuumCleanerImg, averagePregnancy: 1450 },
+    { id: 48, name: "منقي الهواء", image: airPurifierImg, averagePregnancy: 10 },
+    { id: 49, name: "ماكينة خياطة", image: sewingMachineImg, averagePregnancy: 75 },
+    { id: 50, name: "هاتف لاسلكي", image: cordlessPhoneImg, averagePregnancy: 10 },
+    { id: 51, name: "شاحن موبايل", image: mobileChargerImg, averagePregnancy: 29 },
+    { id: 52, name: "مروحة عادية", image: regularFanImg, averagePregnancy: 80 },
   ];
 
   const governorates = Govs 
@@ -266,6 +303,7 @@ const SolarCalculation = () => {
               <div key={appliance.id} className="appliance-card">
                 <img className="appliance-img" src={appliance.image} loading="lazy" alt={appliance.name} title={appliance.name} />
                 <h5 className="appliance-name">{appliance.name}</h5>
+                <h6 className="appliance-averagePregnancy"> الحمل التقريبي: {appliance.averagePregnancy} واط</h6>
                 <div className="quantity-selector">
                   <button
                     className="btn btn-sm btn-outline-warning bg-count"
